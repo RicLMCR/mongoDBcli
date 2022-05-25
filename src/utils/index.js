@@ -40,7 +40,7 @@ exports.delMovie = async (movieObj, collection)=>{
 exports.updtMovie = async(movieObj, collection)=>{
     console.log("1 Succesfully updated entry")
 const response = await collection.updateOne(
-    { title: movieObj.title, actor: movieObj.actor},
+    { title: movieObj.title},
     { $set: {title: movieObj.newTitle}}
   );
   if (response.acknowledged){
