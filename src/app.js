@@ -14,6 +14,8 @@ const app = async (yargsObj) => {
             await delMovie({title:yargsObj.title}, collection) /* Delete movie function */
         } else if (yargsObj.updt){
             await updtMovie({title: yargsObj.title, newTitle: yargsObj.newTitle},collection);
+        } else if(yargsObj.find){
+            await findMovie({title: yargsObj.title, actor: yargsObj.actor},collection)
         }
         console.log("incorrect command");
     } catch (error) {
@@ -27,4 +29,5 @@ app(yargs.argv);
 // node src/app.js --add --title "Spiderman"
 // node src/app.js --list
 // node src/app.js --del --title "Spiderman"
-// node src/app.js --updt --title "Spiderman" --newTitle "Hulk"
+// node src/app.js --updt --title "Spiderman" --newTitle "Hulk" CHange to include update actor
+// node src/app.js --find --title "Spiderman" --actor "Toby Maguire"????
