@@ -7,13 +7,13 @@ const app = async (yargsObj) => {
     try {
         if (yargsObj.add) {
             // Create functionality. Add movie to mongo db
-            await addMovie({title:yargsObj.title}, collection)
+            await addMovie({title:yargsObj.title, actor:yargsObj.actor}, collection)
         } else if (yargsObj.list) {
             await listMovie(collection);/* Read functionality. List movies from mongo db*/
         } else if (yargsObj.del) {
             await delMovie({title:yargsObj.title}, collection) /* Delete movie function */
         } else if (yargsObj.updt){
-            await updtMovie({title: yargsObj.title, title: yargsObj.newTitle},collection);
+            await updtMovie({title: yargsObj.title, newTitle: yargsObj.newTitle},collection);
         }
         console.log("incorrect command");
     } catch (error) {
@@ -27,3 +27,4 @@ app(yargs.argv);
 // node src/app.js --add --title "Spiderman"
 // node src/app.js --list
 // node src/app.js --del --title "Spiderman"
+// node src/app.js --updt --title "Spiderman" --newTitle "Hulk"

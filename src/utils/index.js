@@ -3,7 +3,8 @@ const { Compressor } = require("mongodb");
 // Add single movie to the DB
 exports.addMovie = async (movieObj, collection) => {//movieObj and colelction both nedd to be passed otherwsie they will be classed as undefined
     const response = await collection.insertOne({
-        title: movieObj.title
+        title: movieObj.title,
+        actor: movieObj.actor
     });
     if (response.acknowledged){
         console.log("Succesfully added movie")
@@ -35,13 +36,19 @@ exports.delMovie = async (movieObj, collection)=>{
 };
 
 // Change details of single movie
+// NOTE: Can also use FIND operator
 exports.updtMovie = async(movieObj, collection)=>{
+    console.log("1 Succesfully updated entry")
 const response = await collection.updateOne(
-    { title: movieObj.title},
-    { $set: movieObj.newTitle }
+    { title: movieObj.title, actor: movieObj.actor},
+    { $set: {title: movieObj.newTitle}}
   );
+  if (response.acknowledged){
+      console.log("2 Succesfully updated entry")
+  }
+  console.log("3 Succesfully updated entry")
 };
 
-// node src/app.js --updt --title "Spiderman" --newTitle "Hulk"
+
 //considr making a movie claas with title and actor and static methods built into the class
 
